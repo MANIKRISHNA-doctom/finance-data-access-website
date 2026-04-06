@@ -108,8 +108,7 @@ PORT=5000
 | Login / Logout                | ✅     | ✅      | ✅    |
 | View own records              | ✅     | ✅      | ✅    |
 | View dashboard summary        | ✅     | ✅      | ✅    |
-| View monthly/weekly 
-  trends/  monthly profit-loss  | ❌     | ✅      | ✅    |
+| View monthly/weekly trends & profit/loss  | ❌     | ✅      | ✅    |
 | Create / Update records       | ❌     | ❌      | ✅    |
 | Soft delete / Restore records | ❌     | ❌      | ✅    |
 | Permanently delete records    | ❌     | ❌      | ✅    |
@@ -119,12 +118,12 @@ PORT=5000
 
 ## API Endpoints
 
-### Base URL
+## Base URL
 
-```
- Local: http://localhost:5000
- Production: https://finance-data-access-api.onrender.com
-```
+Use the following base URLs to access the API:
+
+- **Local Development:** http://localhost:5000  
+- **Live API (Production):** https://finance-data-access-api.onrender.com
 
 ---
 
@@ -175,7 +174,10 @@ PORT=5000
 ## User Registration
 Create a new user by sending a POST request:
 
-POST /user/create  
+### Endpoint
+POST /user/create
+
+### Headers
 Content-Type: application/json
 
 ### Request Body demo
@@ -204,7 +206,7 @@ Content-Type: application/json
 ```
 ## Demo Credentials
 ```bash
-{ "email" : "john@gmail.com,
+{ "email" : "john@gmail.com",
   "password : "123"
 }
 ```
