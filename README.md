@@ -178,7 +178,7 @@ Create a new user by sending a POST request:
 POST /user/create  
 Content-Type: application/json
 
-### Request Body
+### Request Body demo
 ```bash
 {
   "name": "John Doe",
