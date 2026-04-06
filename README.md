@@ -207,7 +207,7 @@ Content-Type: application/json
 ## Demo Credentials
 ```bash
 { "email" : "john@gmail.com",
-  "password : "123"
+  "password" : "123"
 }
 ```
 
