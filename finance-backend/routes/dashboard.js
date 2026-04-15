@@ -111,6 +111,7 @@ for (let i = 0; i < monthlyProfitLoss.length; i++) {
   });
 }
   const responses = {
+     role,
      totalIncome: income,
       totalExpenses: expense,
       netBalance,
