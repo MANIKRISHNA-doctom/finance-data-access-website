@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Routes , Route } from 'react-router-dom'
-import sign_up from './pages/sign_up'
+import SignUp from './pages/SignUp'
 import Login from './pages/Login'
-import home from './pages/home'
+import Home from './pages/home'
 import './App.css'
 
 function App() {
@@ -11,9 +11,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element = {<login_page/>}></Route>
-        <Route path='/login' element = {<login_page/>}></Route>
-        <Route path ='/sign_up' element= {<sign_up/>}></Route>
+        <Route path='/' element = {<Login/>}></Route>
+        <Route path='/home' element = {<Home/>}></Route>
+        <Route path ='/sign_up' element= {<SignUp/>}></Route>
       </Routes>
     </>
   )
