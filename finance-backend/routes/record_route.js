@@ -217,6 +217,9 @@ record_route.get('/restoring_record/:id',authRoleMiddleware(["ADMIN"]),async (re
 //Filtering records based on criteria
 record_route.post("/records", authRoleMiddleware(), async (req, res) => {
   try {
+    if (!req.body) {
+      return res.status(400).json({ message: "Request body is missing" });
+    }
     let { type, category, startDate, endDate, minAmount, maxAmount } = req.body;
     if (!startDate && !endDate) {
       const today = new Date();
