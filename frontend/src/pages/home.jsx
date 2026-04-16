@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 const Home = () => {
   const [data, setData] = useState(null);
@@ -120,16 +121,29 @@ const Home = () => {
           <h2 className="text-xl font-semibold text-red-600">Admin Panel</h2>
 
           <div className="flex gap-4">
-            <button className="bg-green-500 text-white px-4 py-2 rounded">
+            <Link to='create_record'>
+              <button className="bg-green-500 text-white px-4 py-2 rounded">
               Create Record
-            </button>
-            <button className="bg-red-500 text-white px-4 py-2 rounded">
-              Delete Record
-            </button>
+              </button>
+            </Link>
+            <Link to='delete_record'>
+              <button className="bg-red-500 text-white px-4 py-2 rounded">
+                Delete Record
+              </button>    
+            </Link>
+            <div className="flex gap-4">
+            <Link to="/add_user">
+              <button className="bg-green-500 text-white px-4 py-2 rounded">
+                Add User
+              </button>
+            </Link>
 
-            <button className="bg-purple-500 text-white px-4 py-2 rounded">
-              Manage Users
-            </button>
+            <Link to="/delete_user">
+              <button className="bg-red-500 text-white px-4 py-2 rounded">
+                Delete User
+              </button>
+            </Link>
+          </div>
           </div>
         </div>
       )}

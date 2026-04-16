@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-const DeleteRecord = () => {
+const Delete_record = () => {
   const [recordId, setRecordId] = useState("");
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
@@ -73,4 +73,4 @@ const DeleteRecord = () => {
   );
 };
 
-export default DeleteRecord;
+export default Delete_record;
