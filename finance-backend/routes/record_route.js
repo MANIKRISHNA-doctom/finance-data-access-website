@@ -167,7 +167,7 @@ record_route.delete("/soft_delete/:id", authRoleMiddleware(["ADMIN"]), async (re
         where: { id: Number(id) , deleted : false }
       });
       if (!record) {
-        res.status(404).json({ message: "Record not found" });
+        return res.status(404).json({ message: "Record not found" });
       }
       const deleted_record = await prisma.financialRecord.update({
         where: { id: Number(id) },
