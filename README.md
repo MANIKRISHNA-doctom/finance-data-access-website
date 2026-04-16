@@ -7,7 +7,8 @@ A secure Node.js and Express REST API for personal finance management, featuring
 ## Tech Stack
 
 - **Runtime:** Node.js (ES Modules)
-- **Framework:** Express.js
+- **Framework:** Express.js , tailwind.css
+- **Libraries:** React.js,
 - **ORM:** Prisma
 - **Database:** PostgreSQL
 - **Authentication:** JWT (JSON Web Tokens)
