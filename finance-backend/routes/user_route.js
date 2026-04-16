@@ -111,8 +111,8 @@ user_route.post("/user_ver", async (req, res) => {
     });
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "None"
+      secure: false,
+      sameSite: "Lax"
     });
     res.status(200).json({ message: "User is successfully verified" });
   } catch (error) {

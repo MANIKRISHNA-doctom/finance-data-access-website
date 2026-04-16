@@ -1,28 +1,55 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { Navigate, useNavigate } from "react-router-dom";
 const Home = () => {
   const [data, setData] = useState(null);
   const [role, setRole] = useState("");
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
+  const handledelete = async ()=>{
+    try {
+          const res = await axios.delete(
+          "https://finance-data-access-api.onrender.com/user/logout",
+          { withCredentials: true }
+        );
+        navigate('/');
+    } catch (err) {
+      console.error(err);
+      if(err.response){
+        setError(err.response.data.message);
+      }
+      else{
+        setError("Error while logging out");
+      }
+    }
+  }
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
         const res = await axios.get(
-          "https://finance-data-access-api.onrender.com/dashboard",
+          "https://finance-data-access-api.onrender.com/user_dashboard",
           { withCredentials: true }
         );
-
         setData(res.data);
         setRole(res.data.role);
       } catch (err) {
         console.error(err);
+        if (err.response) {
+        if (err.response.status === 401) {
+          setError("Invalid email or password");
+        } else if (err.response.status === 404) {
+          setError("User not found");
+        } else if (err.response.status === 500) {
+          setError("Server error");
+        } else {
+          setError(err.response.data.message || "Something went wrong");
+        }
+      } else {
         setError("Unauthorized or session expired");
       }
     };
-
-    fetchDashboard();
+  }
+  fetchDashboard();
   }, []);
 
   if (error) {
@@ -35,7 +62,16 @@ const Home = () => {
 
   return (
     <div className="p-6 space-y-6">
-      <h1 className="text-2xl font-bold text-center">Dashboard</h1>
+      <div className="flex justify-between items-center mb-4">
+  <h1 className="text-2xl font-bold">Dashboard</h1>
+
+  <button
+    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+    onClick={handledelete}
+  >
+    Logout
+  </button>
+</div>
 
       {/* Common for all roles */}
       <div className="grid grid-cols-3 gap-4">
@@ -84,10 +120,6 @@ const Home = () => {
           <h2 className="text-xl font-semibold text-red-600">Admin Panel</h2>
 
           <div className="flex gap-4">
-            <button className="bg-green-500 text-white px-4 py-2 rounded">
-              Add Record
-            </button>
-
             <button className="bg-red-500 text-white px-4 py-2 rounded">
               Delete Record
             </button>
