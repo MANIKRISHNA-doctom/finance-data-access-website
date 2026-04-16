@@ -25,11 +25,11 @@ const CreateRecord = () => {
     e.preventDefault();
 
     try {
-       const payload = {
+       setFormData( {
             ...formData,
             amount: Number(formData.amount),
             viewer_Id: Number(formData.viewer_Id)
-        };
+        });
        const res = await axios.post(
         "https://finance-data-access-api.onrender.com/user_records/create",
         formData,
