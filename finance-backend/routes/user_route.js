@@ -124,7 +124,11 @@ user_route.post("/user_ver", async (req, res) => {
 //User logout
 user_route.delete("/logout", authRoleMiddleware(), async (req, res) => {
   try {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None"
+    });
     return res.status(200).send({ message: "Successfully logged out" });
   } catch (error) {
     res.status(400).send({ message: "we getting error while logging out" });
