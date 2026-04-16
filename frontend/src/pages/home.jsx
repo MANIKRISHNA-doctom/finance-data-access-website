@@ -121,12 +121,12 @@ const Home = () => {
           <h2 className="text-xl font-semibold text-red-600">Admin Panel</h2>
 
           <div className="flex gap-4">
-            <Link to='create_record'>
+            <Link to='/create_record'>
               <button className="bg-green-500 text-white px-4 py-2 rounded">
               Create Record
               </button>
             </Link>
-            <Link to='delete_record'>
+            <Link to='/delete_record'>
               <button className="bg-red-500 text-white px-4 py-2 rounded">
                 Delete Record
               </button>    

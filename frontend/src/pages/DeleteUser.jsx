@@ -7,9 +7,7 @@ const DeleteUser = () => {
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
-
+  const handleDelete = async (type) => {
     if (!userId) {
       setMessage("Please enter user ID");
       setIsError(true);
@@ -17,10 +15,14 @@ const DeleteUser = () => {
     }
 
     try {
-      const res = await axios.delete(
-        `https://finance-data-access-api.onrender.com/user/soft_delete/${userId}`,
-        { withCredentials: true }
-      );
+      const url =
+        type === "soft"
+          ? `https://finance-data-access-api.onrender.com/user/soft_delete/${userId}`
+          : `https://finance-data-access-api.onrender.com/user/delete/${userId}`;
+
+      const res = await axios.delete(url, {
+        withCredentials: true,
+      });
 
       setMessage(res.data.message);
       setIsError(false);
@@ -39,10 +41,7 @@ const DeleteUser = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form
-        onSubmit={handleDelete}
-        className="bg-white p-6 rounded shadow w-80 space-y-4"
-      >
+      <div className="bg-white p-6 rounded shadow w-80 space-y-4">
         <h2 className="text-xl font-bold text-center text-red-600">
           Delete User
         </h2>
@@ -55,31 +54,34 @@ const DeleteUser = () => {
           className="w-full p-2 border rounded"
         />
 
-        <button className="bg-red-500 text-white w-full py-2 rounded hover:bg-red-600">
-          Delete User
-        </button>
-
-        {/* Message */}
-        {message && (
-          <p
-            className={`text-center ${
-              isError ? "text-red-500" : "text-green-500"
-            }`}
+        <div className="flex gap-2">
+          <button
+            onClick={() => handleDelete("soft")}
+            className="bg-yellow-500 text-white w-full py-2 rounded hover:bg-yellow-600"
           >
+            Soft Delete
+          </button>
+
+          <button
+            onClick={() => handleDelete("permanent")}
+            className="bg-red-500 text-white w-full py-2 rounded hover:bg-red-600"
+          >
+            Permanent Delete
+          </button>
+        </div>
+
+        {message && (
+          <p className={`text-center ${isError ? "text-red-500" : "text-green-500"}`}>
             {message}
           </p>
         )}
 
-        {/* Home Button */}
         <Link to="/home">
-          <button
-            type="button"
-            className="w-full mt-2 bg-gray-500 text-white py-2 rounded hover:bg-gray-600"
-          >
+          <button className="w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">
             Go to Home
           </button>
         </Link>
-      </form>
+      </div>
     </div>
   );
 };
